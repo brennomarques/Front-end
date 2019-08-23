@@ -1,5 +1,5 @@
-import axios from 'aixos'
+import axios from 'axios'
 
 export const http = axios.create({
-    baseURL:''
+    baseURL:'http://localhost:8080/Login/'
 }) 

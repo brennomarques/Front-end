@@ -56,20 +56,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="usuario of usuariosvet":key="usuario.id">
-                <td>{{usuario.id}}</td>
-                <td>{{usuario.nome}}</td>
-                <td>{{usuario.cpg}}</td>
-                <td>{{usuario.email}}</td>
-                <td>{{usuario.enderecoid}}</td>
-                <td>{{usuario.telefone}}</td>
-                <td>{{usuario.datanascimento}}</td>
-                <td>
-                  <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button> 
-                  <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
-
-                </td>
-              </tr>
+              <div class="post" v-for="post in posts">
+                <tr>
+                  <td>{{post.id}}</td>
+                  <td>{{post.nome}}</td>
+                  <td>{{post.cpg}}</td>
+                  <td>{{post.email}}</td>
+                  <td>{{post.enderecoid}}</td>
+                  <td>{{post.telefone}}</td>
+                  <td>{{post.datanascimento}}</td>
+                  <td>
+                    <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button> 
+                    <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
+                  </td>
+                </tr>
+              </div>  
             </tbody>
           </table>    
         </div>
@@ -83,20 +84,26 @@
 </template>
 
 <script>
-import usuario from './services/usuario';
+import axios from 'axios'
 export default {
+  name: 'Inicio',
   data(){
-    return{
-      usuariosvet:[]    
+    return {
+      posts:[]
     }
+
   },
   mounted(){
-    usuario.listar().then(resposta=>{
-      console.log('resposta.data')
-      this.usuariosvet = resposta.data
+    let vue = this;
+    axios.get('')
+    .then(function (response) {
+      vue.posts=response.data;     
     })
+
   }
+
 }
+
 </script>
 
 <style>
