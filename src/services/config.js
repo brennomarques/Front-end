@@ -1,5 +1,5 @@
-import aixos from 'aixos'
+import axios from 'aixos'
 
 export const http = axios.create({
-    baseUrl:
+    baseURL:''
 }) 

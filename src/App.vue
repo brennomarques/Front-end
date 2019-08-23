@@ -56,14 +56,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>100</td>
-                <td>50.00</td>
-                <td>50.00</td>
-                <td>50.00</td>
-                <td>50.00</td>
-                <td>50.00</td>
+              <tr v-for="usuario of usuariosvet":key="usuario.id">
+                <td>{{usuario.id}}</td>
+                <td>{{usuario.nome}}</td>
+                <td>{{usuario.cpg}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.enderecoid}}</td>
+                <td>{{usuario.telefone}}</td>
+                <td>{{usuario.datanascimento}}</td>
                 <td>
                   <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button> 
                   <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
@@ -83,8 +83,19 @@
 </template>
 
 <script>
+import usuario from './services/usuario';
 export default {
-  
+  data(){
+    return{
+      usuariosvet:[]    
+    }
+  },
+  mounted(){
+    usuario.listar().then(resposta=>{
+      console.log('resposta.data')
+      this.usuariosvet = resposta.data
+    })
+  }
 }
 </script>
 
